@@ -37,3 +37,6 @@ google-services.json
 
 # Release builds
 app/release
+
+**/sign.gradle
+**/*.jks

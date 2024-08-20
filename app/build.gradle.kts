@@ -3,6 +3,13 @@ plugins {
   id("org.jetbrains.kotlin.android")
 }
 
+if (file("sign.gradle").exists()) {
+    apply {
+      from("sign.gradle")
+    }
+}
+
+
 android {
   namespace = "sh.eliza.textbender"
   compileSdk = 33
@@ -22,6 +29,32 @@ android {
     release {
       isMinifyEnabled = false
       proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+
+      
+            if (file("sign.gradle").exists()) {
+                // Local environment
+                signingConfig = signingConfigs.getByName("release")
+                // isDebuggable = true
+
+                /* sign.gradle is like:
+android {
+    signingConfigs {
+        release {
+            keyAlias 'aliasxxx'
+            keyPassword 'passwordxxx'
+            storeFile file('../xxx.jks')
+            storePassword 'passwordxxx'
+        }
+    }
+}
+GitHub config is like:
+SIGNING_KEY:
+`openssl base64 < some_signing_key.jks | tr -d '\n'`
+ALIAS:
+KEY_STORE_PASSWORD:
+KEY_PASSWORD:
+*/
+            }
     }
   }
   compileOptions {
