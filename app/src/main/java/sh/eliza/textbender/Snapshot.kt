@@ -173,6 +173,31 @@ class Snapshot(
     view.viewTreeObserver.removeOnGlobalLayoutListener(globalLayoutListener)
 
     val boundsInScreen = view.boundsInScreen
+    
+    val allText = StringBuilder()
+    var allTextFirst = true
+
+    val orderedTextAreas = mutableListOf<TextArea>().also { it.addAll(textAreas) }
+    orderedTextAreas.apply {
+      sortBy { (10000 + it.bounds.top) * 30 + it.bounds.left }
+    }
+
+    for (textArea in orderedTextAreas) {
+      if (textArea.bounds.intersect(boundsInScreen) != null) {
+        if (allTextFirst) {
+          allTextFirst = false
+        } else {
+          allText.append("\n\n")
+        }
+        allText.append(textArea.text)
+      }
+    }
+
+    if (allTextFirst) {
+      // xxx
+    } else {
+      allText.append("\n")
+    }
 
     for (textArea in textAreas) {
       textArea.bounds.intersect(boundsInScreen)?.let { bounds ->
@@ -236,5 +261,57 @@ class Snapshot(
         )
       }
     }
+
+    view.addView(
+      Button(
+          context,
+          /*attrs=*/ null,
+          /*defStyleAttr=*/ 0,
+          /*defStyleRes=*/ R.style.Widget_Button_TextOverlay
+        )
+        .apply {
+          text = "[All Text]"
+          x = (boundsInScreen.width - (240 + 56)).toFloat()
+          y = (boundsInScreen.height - (86 + 40)).toFloat()
+          layoutParams = ViewGroup.LayoutParams(240, 86)
+
+          ellipsize = null
+          maxLines = 1
+          gravity = Gravity.CENTER_VERTICAL or Gravity.CENTER_HORIZONTAL
+          setPadding(10, 5, 10, 5)
+          setTextSize(TypedValue.COMPLEX_UNIT_PX, 28.0f)
+
+          setOnClickListener {
+            val preferencesSnapshot = preferences.snapshot
+            Textbender.handleText(
+              context,
+              toaster,
+              preferencesSnapshot,
+              preferencesSnapshot.tapDestination,
+              allText.toString()
+            )
+            onQuit()
+          }
+
+          setOnLongClickListener {
+            val preferencesSnapshot = preferences.snapshot
+            if (preferencesSnapshot.longPressDestination !=
+                TextbenderPreferences.Destination.DISABLED
+            ) {
+              Textbender.handleText(
+                context,
+                toaster,
+                preferencesSnapshot,
+                preferencesSnapshot.longPressDestination,
+                allText.toString()
+              )
+              onQuit()
+              true
+            } else {
+              false
+            }
+          }
+        }
+    )
   }
 }

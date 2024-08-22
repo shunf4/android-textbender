@@ -1,0 +1,5 @@
+{
+    "java.server.launchMode": "Standard",
+    "kotlin.compiler.jvm.target": "17",
+    "kotlin.java.home": "C:/Program Files/Eclipse Adoptium/jdk-17.0.6.10-hotspot",
+}

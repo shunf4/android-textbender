@@ -1,5 +1,5 @@
 <resources>
-  <string name="app_name">Textbender</string>
+  <string name="app_name">TextbenderRiv</string>
 
   <string name="accessibility_service_summary">
     Perform arbitrary actions on screen text.
