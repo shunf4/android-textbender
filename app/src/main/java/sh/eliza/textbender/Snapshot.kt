@@ -2,6 +2,7 @@ package sh.eliza.textbender
 
 import android.content.Context
 import android.graphics.PixelFormat
+import android.graphics.Color
 import android.text.TextUtils.TruncateAt
 import android.util.TypedValue
 import android.view.Gravity
@@ -273,13 +274,14 @@ class Snapshot(
           text = "[All Text]"
           x = (boundsInScreen.width - (240 + 56)).toFloat()
           y = (boundsInScreen.height - (86 + 40)).toFloat()
-          layoutParams = ViewGroup.LayoutParams(240, 86)
+          layoutParams = ViewGroup.LayoutParams(240 + 56, 86 + 40)
 
           ellipsize = null
           maxLines = 1
           gravity = Gravity.CENTER_VERTICAL or Gravity.CENTER_HORIZONTAL
           setPadding(10, 5, 10, 5)
-          setTextSize(TypedValue.COMPLEX_UNIT_PX, 28.0f)
+          setTextSize(TypedValue.COMPLEX_UNIT_PX, 34.0f)
+          setTextColor(Color.parseColor("#0000ff"))
 
           setOnClickListener {
             val preferencesSnapshot = preferences.snapshot
