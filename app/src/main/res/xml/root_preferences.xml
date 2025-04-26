@@ -116,6 +116,30 @@
         app:title="@string/clipboard_destination_title"
         app:useSimpleSummaryProvider="true" />
 
+    <ListPreference
+        app:key="clipboard_destination_2"
+        app:defaultValue="disabled"
+        app:entries="@array/clipboard_destination_entries"
+        app:entryValues="@array/clipboard_destination_values"
+        app:title="Clipboard2"
+        app:useSimpleSummaryProvider="true" />
+
+    <ListPreference
+        app:key="clipboard_destination_long_click"
+        app:defaultValue="disabled"
+        app:entries="@array/clipboard_destination_entries"
+        app:entryValues="@array/clipboard_destination_values"
+        app:title="ClipboardLongClick"
+        app:useSimpleSummaryProvider="true" />
+
+    <ListPreference
+        app:key="clipboard_destination_long_click_2"
+        app:defaultValue="disabled"
+        app:entries="@array/clipboard_destination_entries"
+        app:entryValues="@array/clipboard_destination_values"
+        app:title="ClipboardLongClick2"
+        app:useSimpleSummaryProvider="true" />
+
   </PreferenceCategory>
 
   <PreferenceCategory app:title="@string/text_processing_header">

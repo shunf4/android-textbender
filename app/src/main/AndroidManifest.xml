@@ -96,6 +96,31 @@
     </activity>
 
     <activity
+        android:name=".BendClipboard2Activity"
+        android:label=""
+        android:exported="true"
+        android:launchMode="singleInstance"
+        android:taskAffinity=".BendClipboard2Activity"
+        android:noHistory="true"
+        android:excludeFromRecents="true"
+        android:theme="@style/Theme.Material3.DayNight.NoActionBar">
+    </activity>
+
+    <activity
+        android:name=".BendClipboardLongClickActivity"
+        android:label=""
+        android:exported="true"
+        android:launchMode="singleInstance"
+        android:taskAffinity=".BendClipboardLongClickActivity"
+        android:noHistory="true"
+        android:excludeFromRecents="true"
+        android:theme="@style/Theme.Material3.DayNight.NoActionBar">
+      <intent-filter>
+        <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES" />
+      </intent-filter>
+    </activity>
+
+    <activity
         android:name=".DummyActivity"
         android:exported="true"
         android:noHistory="true"
@@ -121,6 +146,17 @@
         android:label="@string/qs_bend_clipboard"
         android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
         android:icon="@drawable/content_paste_go_24dp"
+        android:exported="true">
+      <intent-filter>
+        <action android:name="android.service.quicksettings.action.QS_TILE" />
+      </intent-filter>
+    </service>
+
+    <service
+        android:name=".BendClipboard2TileService"
+        android:label="BendClip2"
+        android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+        android:icon="@drawable/clipboard_copy"
         android:exported="true">
       <intent-filter>
         <action android:name="android.service.quicksettings.action.QS_TILE" />

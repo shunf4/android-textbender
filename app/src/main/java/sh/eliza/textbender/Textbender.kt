@@ -60,7 +60,8 @@ object Textbender {
           Intent(Intent.ACTION_SEND).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK
             setType("text/plain")
-            putExtra(Intent.EXTRA_TEXT, strippedText)
+            // strippedText is a CharSequence here. Must be converted to String, or the share receiver may fail because the extra Object is not a String.
+            putExtra(Intent.EXTRA_TEXT, strippedText.toString())
           }
         context.startActivity(
           Intent.createChooser(intent, context.getString(R.string.app_name)).apply {

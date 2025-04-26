@@ -49,6 +49,9 @@ private constructor(
     val shareDestination: Destination,
     val urlDestination: Destination,
     val clipboardDestination: Destination,
+    val clipboardDestination2: Destination,
+    val clipboardDestinationLongClick: Destination,
+    val clipboardDestinationLongClick2: Destination,
     val stripRegexp: String,
     val urlFormat: String,
     val yomichanTimeout: Int,
@@ -142,6 +145,21 @@ private constructor(
     if (clipboardDestination === Destination.CLIPBOARD) {
       throw IllegalArgumentException()
     }
+    val clipboardDestination2 =
+      preferences.getDestination("clipboard_destination_2", defaults.clipboardDestination)
+    if (clipboardDestination2 === Destination.CLIPBOARD) {
+      throw IllegalArgumentException()
+    }
+    val clipboardDestinationLongClick =
+      preferences.getDestination("clipboard_destination_long_click", defaults.clipboardDestination)
+    if (clipboardDestinationLongClick === Destination.CLIPBOARD) {
+      throw IllegalArgumentException()
+    }
+    val clipboardDestinationLongClick2 =
+      preferences.getDestination("clipboard_destination_long_click_2", defaults.clipboardDestination)
+    if (clipboardDestinationLongClick2 === Destination.CLIPBOARD) {
+      throw IllegalArgumentException()
+    }
 
     // Text processing options
     val stripRegexp = preferences.getString("strip_regexp", null) ?: defaults.stripRegexp
@@ -167,6 +185,9 @@ private constructor(
       shareDestination,
       urlDestination,
       clipboardDestination,
+      clipboardDestination2,
+      clipboardDestinationLongClick,
+      clipboardDestinationLongClick2,
       stripRegexp,
       urlFormat,
       yomichanTimeout,
@@ -219,6 +240,9 @@ private constructor(
               shareDestination = Destination.DISABLED,
               urlDestination = Destination.DISABLED,
               clipboardDestination = Destination.DISABLED,
+              clipboardDestination2 = Destination.DISABLED,
+              clipboardDestinationLongClick = Destination.DISABLED,
+              clipboardDestinationLongClick2 = Destination.DISABLED,
               stripRegexp = "",
               urlFormat = context.getString(R.string.url_format_default),
               yomichanTimeout =
