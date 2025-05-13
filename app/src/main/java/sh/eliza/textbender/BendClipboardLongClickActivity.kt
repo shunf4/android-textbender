@@ -22,6 +22,7 @@ class BendClipboardLongClickActivity : AppCompatActivity() {
       val dest = when ((intent.getParcelableExtra<ComponentName>(Intent.EXTRA_COMPONENT_NAME))?.shortClassName) {
         ".BendClipboard2TileService" -> preferences.clipboardDestinationLongClick2
         ".BendClipboardTileService" -> preferences.clipboardDestinationLongClick
+        ".ActivateOverlayTileService" -> preferences.activateOverlayTileLongClick
         else -> null
       }
       if (dest == null) {

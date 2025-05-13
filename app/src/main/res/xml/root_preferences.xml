@@ -140,6 +140,19 @@
         app:title="ClipboardLongClick2"
         app:useSimpleSummaryProvider="true" />
 
+    <ListPreference
+        app:key="activate_overlay_tile_destination_long_click"
+        app:defaultValue="disabled"
+        app:entries="@array/clipboard_destination_entries"
+        app:entryValues="@array/clipboard_destination_values"
+        app:title="ActivateOverlayTileLongClick"
+        app:useSimpleSummaryProvider="true" />
+
+    <EditTextPreference
+        app:key="preferred_url_browser_package_name"
+        app:title="PreferredUrlBrowserPackageName"
+        app:defaultValue="" />
+
   </PreferenceCategory>
 
   <PreferenceCategory app:title="@string/text_processing_header">

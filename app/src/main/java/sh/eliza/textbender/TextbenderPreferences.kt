@@ -26,6 +26,7 @@ private constructor(
     SHARE,
     PLECO,
     YOMICHAN,
+    AS_URL,
   }
 
   enum class FingerprintGesture {
@@ -52,6 +53,8 @@ private constructor(
     val clipboardDestination2: Destination,
     val clipboardDestinationLongClick: Destination,
     val clipboardDestinationLongClick2: Destination,
+    val activateOverlayTileLongClick: Destination,
+    val preferredUrlBrowserPackageName: String?,
     val stripRegexp: String,
     val urlFormat: String,
     val yomichanTimeout: Int,
@@ -160,6 +163,9 @@ private constructor(
     if (clipboardDestinationLongClick2 === Destination.CLIPBOARD) {
       throw IllegalArgumentException()
     }
+    val activateOverlayTileLongClick =
+      preferences.getDestination("activate_overlay_tile_destination_long_click", defaults.activateOverlayTileLongClick)
+    val preferredUrlBrowserPackageName = preferences.getString("preferred_url_browser_package_name", defaults.preferredUrlBrowserPackageName)
 
     // Text processing options
     val stripRegexp = preferences.getString("strip_regexp", null) ?: defaults.stripRegexp
@@ -188,6 +194,8 @@ private constructor(
       clipboardDestination2,
       clipboardDestinationLongClick,
       clipboardDestinationLongClick2,
+      activateOverlayTileLongClick,
+      preferredUrlBrowserPackageName,
       stripRegexp,
       urlFormat,
       yomichanTimeout,
@@ -204,6 +212,7 @@ private constructor(
       "share" -> Destination.SHARE
       "pleco" -> Destination.PLECO
       "yomichan" -> Destination.YOMICHAN
+      "as_url" -> Destination.AS_URL
       null -> default
       else -> throw IllegalArgumentException()
     }
@@ -243,6 +252,8 @@ private constructor(
               clipboardDestination2 = Destination.DISABLED,
               clipboardDestinationLongClick = Destination.DISABLED,
               clipboardDestinationLongClick2 = Destination.DISABLED,
+              activateOverlayTileLongClick = Destination.DISABLED,
+              preferredUrlBrowserPackageName = "",
               stripRegexp = "",
               urlFormat = context.getString(R.string.url_format_default),
               yomichanTimeout =

@@ -24,6 +24,7 @@
     <item>@string/destination_share</item>
     <item>@string/destination_pleco</item>
     <item>@string/destination_yomichan</item>
+    <item>@string/destination_as_url</item>
   </string-array>
 
   <string-array name="destination_values">
@@ -33,6 +34,7 @@
     <item>share</item>
     <item>pleco</item>
     <item>yomichan</item>
+    <item>as_url</item>
   </string-array>
 
   <string-array name="share_destination_entries">
@@ -41,6 +43,7 @@
     <item>@string/destination_url</item>
     <item>@string/destination_pleco</item>
     <item>@string/destination_yomichan</item>
+    <item>@string/destination_as_url</item>
   </string-array>
 
   <string-array name="share_destination_values">
@@ -49,6 +52,7 @@
     <item>url</item>
     <item>pleco</item>
     <item>yomichan</item>
+    <item>as_url</item>
   </string-array>
 
   <string-array name="clipboard_destination_entries">
@@ -57,6 +61,7 @@
     <item>@string/destination_share</item>
     <item>@string/destination_pleco</item>
     <item>@string/destination_yomichan</item>
+    <item>@string/destination_as_url</item>
   </string-array>
 
   <string-array name="clipboard_destination_values">
@@ -65,5 +70,6 @@
     <item>share</item>
     <item>pleco</item>
     <item>yomichan</item>
+    <item>as_url</item>
   </string-array>
 </resources>

@@ -78,7 +78,8 @@
   <!-- Destination entries -->
   <string name="destination_disabled">Disabled</string>
   <string name="destination_clipboard">Copy to clipboard</string>
-  <string name="destination_url">Open URL</string>
+  <string name="destination_url">Open Converted URL</string>
+  <string name="destination_as_url">Open as URL</string>
   <string name="destination_share">Share</string>
   <string name="destination_pleco">Open in Pleco</string>
   <string name="destination_yomichan">Open in Yomitan via Kiwi Browser</string>

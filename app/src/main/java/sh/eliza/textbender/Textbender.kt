@@ -53,7 +53,11 @@ object Textbender {
       TextbenderPreferences.Destination.URL -> {
         val uriText = URLEncoder.encode(strippedText.toString(), Charsets.UTF_8.name())
         val uri = Uri.parse(preferences.urlFormat.replace("{text}", uriText))
-        openUri(context, toaster, uri)
+        openUri(context, preferences.preferredUrlBrowserPackageName, toaster, uri)
+      }
+      TextbenderPreferences.Destination.AS_URL -> {
+        val uri = Uri.parse(strippedText.toString())
+        openUri(context, "", toaster, uri)
       }
       TextbenderPreferences.Destination.SHARE -> {
         val intent =
@@ -72,16 +76,19 @@ object Textbender {
       TextbenderPreferences.Destination.PLECO -> {
         val uriText = URLEncoder.encode(strippedText.toString(), Charsets.UTF_8.name())
         val uri = Uri.parse("plecoapi://x-callback-url/s?q=$uriText")
-        openUri(context, toaster, uri)
+        openUri(context, "", toaster, uri)
       }
       TextbenderPreferences.Destination.YOMICHAN -> openInYomichan(context, toaster, strippedText)
     }
   }
 }
 
-private fun openUri(context: Context, toaster: Toaster, uri: Uri) {
+private fun openUri(context: Context, packageName: String?, toaster: Toaster, uri: Uri) {
   Log.i(TAG, "Opening URI: ${uri}")
   val intent = Intent(Intent.ACTION_VIEW, uri).apply { flags = Intent.FLAG_ACTIVITY_NEW_TASK }
+  if (!packageName.isNullOrEmpty()) {
+    intent.setPackage(packageName)
+  }
   if (intent.resolveActivity(context.packageManager) !== null) {
     context.startActivity(intent)
   } else {
